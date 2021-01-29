@@ -13,7 +13,6 @@ def levenshtein(seq1, seq2):
     for y in range(size_y):
         matrix [0, y] = y
 
-
     for x in range(1, size_x):
         for y in range(1, size_y):
             if seq1[x-1] == seq2[y-1]:
