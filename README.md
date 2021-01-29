@@ -4,6 +4,6 @@
   matrix[x][y] not matrix[x,y].
 * [] How to match a list, return lowest score with a cutoff.  With test.
 * [] Practice 1-2 times again from memory
-* [] Set of test cases in unittest package / pytest
+* [x] Set of test cases in unittest package / pytest
 * [] Remove punctuation from string
-* [] Transposition - last name first name.  Do we have to do middle names?
+* [] Transposition - last name first name.  Current implementation should handle most cases, 
