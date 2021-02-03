@@ -36,12 +36,8 @@ def lev(str1, str2):
     return matrix[x_len - 1, y_len - 1]
 
 
+
 def find_in_list(needle: str, haystack: List[str], cutoff: int = 2) -> str:
-    match = _find_in_list(needle, haystack, cutoff)
-    return match[0]
-
-
-def _find_in_list(needle: str, haystack: List[str], cutoff: int = 2) -> str:
     """Returns the last match with the lowest Levenshtein score (closest match) that is at or below the cutoff value
        If no match return an empty string.
 
@@ -63,7 +59,7 @@ def _find_in_list(needle: str, haystack: List[str], cutoff: int = 2) -> str:
             lowest = score
             match = elem
 
-    return match, i
+    return match
 
 
 def remove_punctuation(source: str) -> str:
@@ -82,12 +78,26 @@ def normalize_name(source: str) -> str:
 def find_in_list_with_transposition_support(needle: str, haystack: List[str], cutoff: int = 2) -> str:
     # Works but does not account for middle names missing, etc.
     # More problematic is that it does not return name, but an transposed name.
-    #
+
+    assert haystack is not None
+    assert None not in haystack
+    assert str is not None
+
     names = []
     for name in haystack:
         names.append(normalize_name(name))
-    _, matched_idx = _find_in_list(normalize_name(needle), names, cutoff)
-    return haystack[matched_idx]
+    normal_needle = normalize_name(needle)
+
+    lowest = cutoff
+    match = ''
+    for i, elem in enumerate(names):
+        score = lev(normal_needle, elem)
+
+        if score <= lowest:
+            lowest = score
+            match = haystack[i]
+
+    return match
 
 
 

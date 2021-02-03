@@ -46,5 +46,5 @@ def test_normalized_match_works():
     l_test_local.append(s_test)
     normal_me = "Lockwood, John"
     m = find_in_list_with_transposition_support(normal_me, l_test_local)
-    assert m == normalize_name(s_test)
+    assert m == s_test
 
